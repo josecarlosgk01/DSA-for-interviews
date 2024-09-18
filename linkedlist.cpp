@@ -35,12 +35,48 @@ public:
         head = newNode;
     }
 
+    void insertEnd(int value)
+    {
+        Node *newNode = new Node(value);
+
+        if (this->head == NULL)
+        {
+            head = newNode;
+            return;
+        }
+
+        Node *current = head;
+        while (current->next != NULL)
+        {
+            current = current->next;
+        }
+
+        current->next = newNode;
+    }
+
     int getHeadValue()
     {
         if (head == NULL)
             return -1;
         else
             return head->value;
+    }
+
+    int getLastValue()
+    {
+        if (head == NULL)
+        {
+            return -1;
+        }
+        else
+        {
+            Node *current = head;
+            while (current->next != NULL)
+            {
+                current = current->next;
+            }
+            return current->value;
+        }
     }
 };
 
@@ -53,4 +89,11 @@ int main()
     cout << linkedList->getHeadValue() << endl;
     linkedList->insertFront(3);
     cout << linkedList->getHeadValue() << endl;
+
+    linkedList->insertEnd(1);
+    cout << linkedList->getLastValue() << endl;
+    linkedList->insertEnd(2);
+    cout << linkedList->getLastValue() << endl;
+    linkedList->insertEnd(3);
+    cout << linkedList->getLastValue() << endl;
 }
